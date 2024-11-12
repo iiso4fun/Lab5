@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Email Validation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .email-validation-container {
+            background: linear-gradient(135deg, #6a1b9a, #d500f9);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .email-validation-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .email-input {
+            width: 80%;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: none;
+            background-color: #222222;
+            color: #fff;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) inset;
+            outline: none;
+        }
+
+        .email-input:focus {
+            background-color: #333333;
+            box-shadow: 0 0 8px #00bcd4 inset;
+        }
+
+        .validate-email-btn {
+            background-color: #00bcd4;
+            color: #121212;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 188, 212, 0.7);
+        }
+
+        .validate-email-btn:hover {
+            background-color: #0097a7;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 188, 212, 0.8);
+        }
+
+        #email-feedback {
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        .feedback-text {
+            font-size: 1.1em;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .valid {
+            background-color: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00e676;
+        }
+
+        .invalid {
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 2px solid #f44336;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="email-validation-container">
+        <h2>Email Validator</h2>
+        <input type="text" id="email-input" class="email-input" placeholder="Enter your email">
+        <button id="validate-email" class="validate-email-btn">Validate Email</button>
+        <div id="email-feedback" class="email-feedback"></div>
+    </div>
+
+    <audio id="validation-sound" preload="auto">
+        <source src="/sounds/vats-activation.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        $(document).ready(function () {
+            $('#validate-email').click(function () {
+                const email = $('#email-input').val();
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let feedback = '';
+                let feedbackClass = '';
+
+                if (!email) {
+                    feedback = 'Please enter an email address.';
+                    feedbackClass = 'invalid';
+                } else if (emailPattern.test(email)) {
+                    feedback = 'The email address is valid.';
+                    feedbackClass = 'valid';
+                } else {
+                    feedback = 'Invalid email format. Please check again.';
+                    feedbackClass = 'invalid';
+                }
+
+                // Play validation sound
+                const audio = document.getElementById('validation-sound');
+                audio.play().catch(function(error) {
+                    console.error("Audio playback failed:", error);
+                });
+
+                // Display feedback
+                $('#email-feedback').html(`<div class="feedback-text ${feedbackClass}">${feedback}</div>`);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Interactive NBA Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Styling for the title */
+        h2 {
+            color: #4a90e2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Container for the quiz */
+        #quiz-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        /* Styling for each question */
+        .quiz-question {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question:last-child {
+            border-bottom: none;
+        }
+
+        /* Styling for the question text */
+        .quiz-question p {
+            font-size: 1.1em;
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        /* Styling for radio button options */
+        .quiz-question form div {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .quiz-question input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-question label {
+            font-size: 1em;
+            color: #555;
+            cursor: pointer;
+        }
+
+        /* Styling for the submit button */
+        #submit-quiz {
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #submit-quiz:hover {
+            background-color: #357ab7;
+        }
+
+        /* Styling for the quiz result */
+        #quiz-result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Interactive NBA Quiz</h2>
+    <div id="quiz-container" class="quiz-container"></div>
+    <button id="submit-quiz" style="margin-top: 20px;">Submit Quiz</button>
+    <div id="quiz-result"></div>
+
+    <script>
+        $(document).ready(function () {
+            // Make an AJAX call to fetch quiz questions
+            $.ajax({
+                url: "/api/quiz/questions",
+                method: "GET",
+                success: function (data) {
+                    // Iterate over each question and add it to the page
+                    data.forEach(function (question, index) {
+                        let questionHtml = '<div class="quiz-question">';
+                        questionHtml += '<p><b>' + question.question + '</b></p>';
+                        questionHtml += '<form>';
+
+                        question.options.forEach(function (option, optionIndex) {
+                            questionHtml += `
+                                <div>
+                                    <input type="radio" name="question-${index}" id="question-${index}-option-${optionIndex}" value="${option}">
+                                    <label for="question-${index}-option-${optionIndex}">${option}</label>
+                                </div>
+                            `;
+                        });
+
+                        questionHtml += '</form>';
+                        questionHtml += '</div>';
+                        
+                        // Append question to the container
+                        $("#quiz-container").append(questionHtml);
+                    });
+                },
+                error: function () {
+                    $("#quiz-container").append('<p>Unable to load quiz questions. Please try again later.</p>');
+                }
+            });
+
+            // Handle quiz submission
+            $('#submit-quiz').click(function () {
+                let correctAnswers = [
+                    "LeBron James",      // All-time leading scorer
+                    "Boston Celtics",    // Most championships
+                    "Kobe Bryant",       // The Black Mamba
+                    "Washington Wizards",// Jordan after second retirement
+                    "Nikola Jokic"       // 2021 MVP
+                ];
+                
+                let score = 0;
+                correctAnswers.forEach(function (answer, index) {
+                    let selectedOption = $(`input[name="question-${index}"]:checked`).val();
+                    if (selectedOption === answer) {
+                        score++;
+                    }
+                });
+
+                let resultMessage = `You scored ${score} out of ${correctAnswers.length}`;
+                $("#quiz-result").text(resultMessage);
+            });
+        });
+    </script>
+</body>
+</html>
