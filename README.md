@@ -72,8 +72,8 @@ AJAX & jQuery: Used to get quiz data from the server and show it on the page wit
 Bootstrap: A tool that makes the app’s web pages look nice and neat.
 
 
-Running Tests
+## Tests
 
-To run the unit tests:
+in order to run :
 
 $ ./mvnw test
