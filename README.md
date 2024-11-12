@@ -1,7 +1,7 @@
 
-- Interactive Quiz**: Get questions dynamically loaded from a REST API.
-- Password Checker**: Check the strength of your password.
-- Email Validator**: Check if your email is valid.
+- Interactive Quiz: Get questions dynamically loaded from a REST API.
+- Password Checker: Check the strength of your password.
+- Email Validator: Check if your email is valid.
 
 ---
 
@@ -17,7 +17,7 @@ To get started, make sure you have the following installed on your system:
 
 ### 1. Clone the Project:
 First, download the project:
-```bash
+```bash 
 git clone <repository-url>
 cd <repository-folder>
 
