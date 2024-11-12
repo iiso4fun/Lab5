@@ -15,10 +15,8 @@ This is a simple app made with Spring Boot. It lets you take a quiz, check if yo
 
  ## Prerequisites:
 Before you start, make sure you have these:
-- Java 17 or higher**.
-- Apache Maven 3.6+**.
-- Internet connection** to download dependencies.
-
+- Java 17 or higher.
+- Apache Maven 3.6+.
 ---
 
 ## Project Structure:
