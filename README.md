@@ -1,29 +1,33 @@
-Interactive Quiz: Get questions dynamically loaded from a REST API.
-Password Checker: Check the strength of your password.
-Email Validator: Check if your email is valid.
-Requirements:
 
+- Interactive Quiz**: Get questions dynamically loaded from a REST API.
+- Password Checker**: Check the strength of your password.
+- Email Validator**: Check if your email is valid.
+
+---
+
+## Requirements:
 To get started, make sure you have the following installed on your system:
+- Java 17 or higher**
+- Maven 3.6+**
+- Internet connection** (for downloading dependencies)
 
-Java 17 or higher
-Maven 3.6+
-Internet connection (for downloading dependencies)
-How to Use:
+---
 
-1. Clone the Project:
+## How to Use:
+
+### 1. Clone the Project:
 First, download the project:
-
+```bash
 git clone <repository-url>
 cd <repository-folder>
+
 2. Build the Project:
 Use Maven to set up the project:
-
 ./mvnw clean install
+
 3. Run the Application:
 Start the app:
-
 ./mvnw spring-boot:run
-Folder Structure:
 
 Backend Code (src/main/java):
 QuizController.java: Provides the quiz questions through a REST API.
@@ -35,14 +39,8 @@ email.html: The email validation page.
 quiz.html: Displays the quiz questions.
 Static Files (src/main/resources/static/css):
 CSS: Custom styles for the UI.
-Tech Stack:
 
-Spring Boot: Backend framework.
-Thymeleaf: Templating engine for HTML.
-AJAX & jQuery: For fetching and displaying quiz questions dynamically.
-Bootstrap: For basic styling.
 Running Tests:
 
 To test the app, simply run:
-
 ./mvnw test
