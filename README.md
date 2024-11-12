@@ -1,6 +1,6 @@
 
 ---
- Spring Boot Quiz App
+## Spring Boot Quiz App
 
 This is a simple app made with Spring Boot. It lets you take a quiz, check if your password is strong, and verify if your email is correct. The app uses Thymeleaf to show the pages and REST APIs to get the quiz questions.
 
@@ -65,7 +65,7 @@ $ ./mvnw spring-boot:run
 ---
 
 
-
+## Resources Used
 Spring Boot: A tool that helps build the backend of the app and manage its functions.
 Thymeleaf: A tool that helps create the web pages you see in the app.
 AJAX & jQuery: Used to get quiz data from the server and show it on the page without reloading.
