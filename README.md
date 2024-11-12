@@ -1,76 +1,48 @@
-# Spring Boot Application
+Interactive Quiz: Get questions dynamically loaded from a REST API.
+Password Checker: Check the strength of your password.
+Email Validator: Check if your email is valid.
+Requirements:
 
-This is a simple Spring Boot application that serves a quiz with questions and answers using Thymeleaf templates and REST APIs. Users can access different features like checking password quality, validating emails, and taking a quiz.
+To get started, make sure you have the following installed on your system:
 
-## Features
+Java 17 or higher
+Maven 3.6+
+Internet connection (for downloading dependencies)
+How to Use:
 
-- REST API to provide quiz questions in JSON format.
-- Thymeleaf templates to render the user interface.
-- AJAX integration to dynamically load quiz questions from REST APIs.
-- Password quality check and email validation.
+1. Clone the Project:
+First, download the project:
 
-## Prerequisites
+git clone <repository-url>
+cd <repository-folder>
+2. Build the Project:
+Use Maven to set up the project:
 
-- Java Development Kit (JDK) 17 or higher
-- Apache Maven 3.6+
-- Internet connection to fetch dependencies
+./mvnw clean install
+3. Run the Application:
+Start the app:
 
-## Project Structure
+./mvnw spring-boot:run
+Folder Structure:
 
-- `src/main/java` - Contains Java source files for controllers and models.
-- `src/main/resources/templates` - Thymeleaf HTML templates (for UI).
-- `src/main/resources/static/css` - CSS files for styling.
-- `pom.xml` - Maven configuration file.
+Backend Code (src/main/java):
+QuizController.java: Provides the quiz questions through a REST API.
+WebController.java: Handles rendering of the Thymeleaf HTML pages.
+Frontend Templates (src/main/resources/templates):
+home.html: The main page.
+password.html: The password strength check page.
+email.html: The email validation page.
+quiz.html: Displays the quiz questions.
+Static Files (src/main/resources/static/css):
+CSS: Custom styles for the UI.
+Tech Stack:
 
-## Getting Started
+Spring Boot: Backend framework.
+Thymeleaf: Templating engine for HTML.
+AJAX & jQuery: For fetching and displaying quiz questions dynamically.
+Bootstrap: For basic styling.
+Running Tests:
 
-### 1. Clone the Repository
+To test the app, simply run:
 
-```sh
-$ git clone <repository-url>
-$ cd <repository-folder>
-```
-
-### 2. Build the Project
-
-Use Maven to build the project and download dependencies.
-
-```sh
-$ ./mvnw clean install
-```
-
-### 3. Run the Application
-
-To run the Spring Boot application:
-
-```sh
-$ ./mvnw spring-boot:run
-```
-
-## Directory Structure
-
-- **Controllers**: Handles requests and responses between the UI and backend logic.
-  - `QuizController.java` - REST API endpoint for quiz questions.
-  - `WebController.java` - Handles rendering Thymeleaf pages.
-- **Templates**: Thymeleaf HTML files located in `src/main/resources/templates/`.
-  - `home.html` - The home page.
-  - `password.html` - Password quality check page.
-  - `email.html` - Email validation page.
-  - `quiz.html` - Quiz questions page.
-- **Static Resources**: CSS files for styling the UI, located in `src/main/resources/static/css/`.
-
-
-## Technologies Used
-
-- **Spring Boot**: Backend framework to manage controllers and services.
-- **Thymeleaf**: Templating engine for rendering UI.
-- **AJAX & jQuery**: Used to fetch quiz data from the REST endpoint and display it on the page.
-- **Bootstrap**: For styling the web pages.
-
-## Running Tests
-
-To run the unit tests:
-
-```sh
-$ ./mvnw test
-```
+./mvnw test
