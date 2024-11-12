@@ -8,8 +8,8 @@ This is a simple app made with Spring Boot. It lets you take a quiz, check if yo
 - API for Quiz: Get quiz questions and answers in JSON format.
 - Web Pages: Uses Thymeleaf to show the pages you see in your browser.
 - AJAX: Loads quiz questions without needing to refresh the page.
-- Password Strength Check**: Tells you if your password is strong enough.
-- Email Validation**: Checks if the email you entered is in the right format.
+- Password Strength Check: Tells you if your password is strong enough.
+- Email Validation: Checks if the email you entered is in the right format.
 
 ---
 
